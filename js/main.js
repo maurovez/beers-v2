@@ -4,23 +4,41 @@ assetsArr = [],
 beersArr = [];
 
 (()=>{
-    getBeers()
+    getBeers();
+    getAssets();
 })();
 
-function getBeers(){
-    //consumir un json de modo asíncrono con fetch api
+function getBeers(){ // Consumir un json de modo asíncrono con fetch api
     fetch(beersJson)
     .then(response =>{
-            return response.json();//el método json() extrae el cuerpo del recurso solicitado
+            return response.json(); // El método json() extrae el cuerpo del recurso solicitado
     })
-    .then(data => {//data son los datos del response
+    .then(data => { // Data son los datos del response
+        // console.log(data);
         beersArr.push(data);
     })
-    .catch(error => {//captura si hubo un error en la petición
+    .catch(error => { // Captura si hubo un error en la petición
         console.log(error);
     })
-    .finally(()=>{//fynally nos permite hacer algo si todo salió bien
+    .finally(()=>{ // Fynally nos permite hacer algo si todo salió bien
         console.log('Llegó la birra!'); 
+    })
+}
+
+function getAssets(){
+    fetch(assetsJson)
+    .then(response =>{
+            return response.json();
+    })
+    .then(data => {
+        // console.log(data);
+        assetsArr.push(data);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+    .finally(()=>{
+        console.log('Listo los assets!'); 
     })
 }
 
